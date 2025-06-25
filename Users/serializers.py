@@ -23,3 +23,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         validated_data.pop('password2')  
         user = MyUser.objects.create_user(password=password, **validated_data)
         return user
+
+class UserLoginSerializers(serializers.ModelSerializer):
+    email=serializers.EmailField(max_length=255)
+    class Meta:
+        model=MyUser
+        fields=['email','password']
